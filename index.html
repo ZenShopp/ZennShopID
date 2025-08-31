@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>All Payment Zen Official - Template</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body{margin:0;font-family:'Orbitron',sans-serif;background:url('bg.jpg') no-repeat center center fixed;background-size:cover;color:#00ffea;display:flex;flex-direction:column;align-items:center;min-height:100vh;overflow-x:hidden;padding:0;position:relative;}
+#header-box{width:100vw;background-color:rgba(0,0,0,0.85);padding:2vw 0;display:flex;flex-direction:column;align-items:center;box-shadow:0 0 15px #00ffea;z-index:3;opacity:0;transition:opacity 1s;}
+#clock{font-size:4vw;font-weight:bold;color:#00ffea;text-align:center;text-shadow:0 0 3px #00ffea,0 0 6px #00ffea;margin-bottom:1.5vh;}
+#greeting{width:90%;overflow:hidden;white-space:nowrap;margin-bottom:1vh;}
+#greeting span{display:inline-block;padding-left:100%;animation:marquee 20s linear infinite;font-size:3.5vw;color:#00ffea;text-shadow:0 0 3px #00ffea,0 0 6px #00ffea;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+#warning{font-size:clamp(1.5vw,2vw,2.5vw);color:#ffffff;text-shadow:0 0 2px #ffffff;text-align:center;white-space:nowrap;overflow:hidden;border-right:0.12em solid #ffffff;width:0;animation:typing 4s steps(50,end) forwards,blink 1.5s step-end infinite;}
+@keyframes typing{from{width:0;}to{width:100%;}}@keyframes blink{0%,100%{border-color:transparent;}50%{border-color:#ffffff;}}
+#countdownOverlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,0.95);display:flex;justify-content:center;align-items:center;z-index:50;perspective:1200px;}
+#countdown{font-weight:bold;text-shadow:0 0 20px #00aaff,0 0 40px #00ffff,0 0 60px #00ffea;opacity:1;transform-style: preserve-3d;transition: transform 0.8s, opacity 0.8s, text-shadow 0.3s;display:flex;justify-content:center;align-items:center;text-align:center;}
+.payments{display:flex;flex-direction:column;gap:3vh;align-items:center;opacity:0;transition:opacity 1s;margin-top:5vh;margin-bottom:10vh;pointer-events:none;}
+.payment-row{display:flex;justify-content:space-between;align-items:center;background-color: rgba(0,0,0,0.7);padding:3vw 4vw;border-radius:10px;min-width:70vw;box-shadow:0 0 10px #00ffea;}
+.payment-name{font-size:5vw;color:#00ffea;}
+.detail-btn{padding:2vw 4vw;background-color:#00ffea;border:none;border-radius:5px;font-size:4vw;cursor:pointer;}
+.detail-btn:hover{box-shadow:0 0 20px #00ffea;transform:scale(1.05);}
+.detail-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);flex-direction:column;align-items:center;background-color:black;color:#00ffea;padding:5vw;border-radius:10px;width:80vw;max-width:400px;text-align:center;box-shadow:0 0 25px #00ffea;z-index:10;}
+.detail-box button{margin-top:3vw;padding:3vw 5vw;background-color:#00ffea;color:black;font-size:4vw;border:none;border-radius:5px;cursor:pointer;}
+.detail-box button:hover{box-shadow:0 0 15px #00ffea;transform:scale(1.05);}
+#qrisContainer{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);flex-direction:column;align-items:center;background-color: rgba(0,0,0,0.9);padding:4vw;border-radius:10px;box-shadow:0 0 25px #00ffea;z-index:10;}
+#qrisImage{max-width:80vw;height:auto;margin-bottom:3vw;border:2px solid #00ffea;border-radius:10px;}
+#qrisBackBtn{padding:3vw 5vw;background-color:#00ffea;color:black;border:none;border-radius:5px;font-size:4vw;cursor:pointer;}
+#qrisBackBtn:hover{box-shadow:0 0 15px #00ffea;transform:scale(1.05);}
+#support-box{position:fixed;bottom:0;width:100%;background-color: rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;gap:1vh;padding:1vh 0;box-shadow:0 0 15px #00ffea;z-index:100;opacity:0;transition:opacity 1s;pointer-events:none;}
+#support-box span{font-size:3.5vw;font-weight:bold;color:#00ffea;}
+#support-box .contact{display:flex;gap:5vw;}
+#support-box .contact a{padding:2vw 4vw;background-color:#00ffea;color:black;text-decoration:none;font-weight:bold;border-radius:5px;font-size:4vw;transition:transform 0.2s, box-shadow 0.3s;}
+#support-box .contact a:hover{transform:scale(1.1);box-shadow:0 0 20px #00ffea;}
+</style>
+</head>
+<body>
+
+<div id="header-box">
+    <div id="clock"></div>
+    <div id="greeting"><span>SELAMAT DATANG DI WEBSITE ALL PAYMENT ZEN OFFICIAL🤖</span></div>
+    <div id="warning">⚠️ WARNING : mohon sertakan bukti screenshot an di setiap transaksi ⚠️</div>
+</div>
+
+<div id="countdownOverlay">
+    <div id="countdown">3</div>
+</div>
+
+<div class="payments" id="payments">
+    <!-- Payment rows akan dibuat otomatis dari template JS -->
+</div>
+
+<div id="qrisContainer">
+    <img id="qrisImage" src="qris.png" alt="QRIS">
+    <button id="qrisBackBtn" onclick="hideDetail('qris')">Kembali</button>
+</div>
+
+<div id="support-box">
+    <span>SUPPORT BY :</span>
+    <div class="contact">
+        <a href="https://wa.me/6287728610627" target="_blank">WhatsApp</a>
+        <a href="https://t.me/ZENOFFICIALLLL" target="_blank">Telegram</a>
+    </div>
+</div>
+
+<audio id="audio" src="musik.mp3" loop></audio>
+
+<script>
+// ===================== JAM =====================
+function updateClock(){
+    const now=new Date();
+    const date=now.toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    const time=now.toLocaleTimeString('id-ID',{hour12:false});
+    document.getElementById('clock').innerText=date+' | '+time;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// ===================== TEMPLATE DATA PAYMENTS =====================
+// Ganti array ini untuk update semua pembayaran
+const paymentData=[
+    {name:'Dana', number:'085955157894'},
+    {name:'GoPay', number:'GADA BANG DANA ONLY'},
+    {name:'SeaBank', number:'GADA BANG DANA ONLY'},
+    {name:'QRIS', number:'qris.png'} // QRIS pakai src gambar
+];
+
+// Buat otomatis HTML dari data
+const paymentsEl=document.getElementById('payments');
+paymentData.forEach(item=>{
+    const row=document.createElement('div');
+    row.className='payment-row';
+
+    const span=document.createElement('span');
+    span.className='payment-name';
+    span.innerText=item.name;
+    row.appendChild(span);
+
+    const btn=document.createElement('button');
+    btn.className='detail-btn';
+    btn.innerText='Detail';
+    btn.onclick=()=>showDetail(item.name.toLowerCase());
+    row.appendChild(btn);
+
+    if(item.name.toLowerCase()!=='qris'){
+        const detailBox=document.createElement('div');
+        detailBox.className='detail-box';
+        detailBox.id=item.name.toLowerCase()+'Detail';
+        detailBox.innerHTML=`
+            <div>No: ${item.number}</div>
+            <button onclick="copyText('${item.number}')">Copy</button>
+            <button onclick="hideDetail('${item.name.toLowerCase()}')">Kembali</button>
+        `;
+        row.appendChild(detailBox);
+    }
+
+    paymentsEl.appendChild(row);
+});
+
+// ===================== COUNTDOWN FUTURISTIK =====================
+const countdownEl=document.getElementById('countdown');
+const overlay=document.getElementById('countdownOverlay');
+const headerBox=document.getElementById('header-box');
+const supportBox=document.getElementById('support-box');
+
+const numbers=['3','2','1','READY 🤖'];
+
+function futuristicCountdown(i=0){
+    if(i>=numbers.length){
+        overlay.style.display='none';
+        paymentsEl.style.opacity=1;
+        paymentsEl.style.pointerEvents='auto';
+        headerBox.style.opacity=1;
+        supportBox.style.opacity=1;
+        supportBox.style.pointerEvents='auto';
+        return;
+    }
+
+    countdownEl.innerText=numbers[i];
+    countdownEl.style.fontSize=(numbers[i]==='READY 🤖')?'10vw':'25vw';
+    countdownEl.style.color=(numbers[i]==='READY 🤖')?'#00ffea':'#00aaff';
+    countdownEl.style.opacity=0;
+    countdownEl.style.transform='rotateY(-180deg) scale(0.5)';
+
+    setTimeout(()=>{
+        countdownEl.style.transition='transform 0.9s ease, opacity 0.9s ease, text-shadow 0.5s';
+        countdownEl.style.transform='rotateY(0deg) scale(1)';
+        countdownEl.style.opacity=1;
+        countdownEl.style.textShadow='0 0 30px #00ffff,0 0 60px #00aaff,0 0 90px #00ffea';
+    },50);
+
+    setTimeout(()=> futuristicCountdown(i+1),1200);
+}
+
+// ===================== DETAIL & MUSIK =====================
+function showDetail(payment){
+    if(payment==='qris'){
+        document.getElementById('qrisContainer').style.display='flex';
+    } else {
+        document.getElementById(payment+'Detail').style.display='flex';
+    }
+    const audio=document.getElementById('audio');
+    audio.play().catch(()=>console.log('Autoplay diblokir'));
+}
+
+function hideDetail(payment){
+    if(payment==='qris'){
+        document.getElementById('qrisContainer').style.display='none';
+    } else {
+        document.getElementById(payment+'Detail').style.display='none';
+    }
+}
+
+// ===================== COPY =====================
+function copyText(text){
+    navigator.clipboard.writeText(text);
+    alert('Nomor berhasil dicopy: '+text);
+}
+
+// Mulai countdown saat load
+window.onload=()=> futuristicCountdown();
+</script>
+</body>
+</html>
